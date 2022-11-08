@@ -27,13 +27,13 @@ async function run(){
 
          const serviceCollection = client.db('ServiceCollection').collection('services');
 
-        //  app.get('/addservices', async(req, res)=>{
-        //      const query = {};
-        //      const cursor = serviceCollection.find(query);
-        //      const services = await cursor.toArray();
-        //      res.send(services);
+          app.get('/servicesLoad', async(req, res)=>{
+              const query = {};
+              const cursor = serviceCollection.find(query);
+              const services = await cursor.toArray();
+              res.send(services);
 
-        // });
+         });
 
 
          app.post('/addservices', async(req, res) =>{
