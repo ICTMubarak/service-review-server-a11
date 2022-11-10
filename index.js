@@ -26,6 +26,7 @@ async function run(){
     try{
 
          const serviceCollection = client.db('ServiceCollection').collection('services');
+         const reviewCollection = client.db('ServiceCollection').collection('reviews');
 
           app.get('/servicesLoad', async(req, res)=>{
               const query = {};
@@ -35,6 +36,14 @@ async function run(){
 
          });
 
+         app.get('/reviewsLoad', async(req, res)=>{
+            const query = {};
+            const cursor = reviewCollection.find(query);
+            const reviews = await cursor.toArray();
+            res.send(reviews);
+
+       });
+
 
          app.post('/addservices', async(req, res) =>{
              const service = req.body;
@@ -43,13 +52,20 @@ async function run(){
              res.send(result);
          });
 
+         app.post('/addreview', async(req, res) =>{
+            const review = req.body;
+            console.log(review); 
+            const result = await reviewCollection.insertOne(review);
+            res.send(result);
+        });
 
-        // app.get('/users/:id', async(req, res) =>{
-        //     const id = req.params.id;
-        //     const query = { _id: ObjectId(id)}
-        //     const result = await userCollection.findOne(query);
-        //     res.send(result);
-         //})
+
+         app.get('/detailservice/:id', async(req, res) =>{
+             const id = req.params.id;
+             const query = { _id: ObjectId(id)}
+             const result = await serviceCollection.findOne(query);
+             res.send(result);
+         })
   
     }
 
