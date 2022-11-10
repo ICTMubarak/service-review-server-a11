@@ -20,7 +20,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 
 
-
 async function run(){
 
     try{
@@ -35,6 +34,7 @@ async function run(){
               res.send(services);
 
          });
+         
 
          app.get('/reviewsLoad', async(req, res)=>{
             const query = {};
@@ -76,9 +76,6 @@ async function run(){
 }
 
 run().catch(err => console.log(err));
-
-
-
 
 
 app.get('/', (req, res) =>{
