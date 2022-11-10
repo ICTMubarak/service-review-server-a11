@@ -33,7 +33,7 @@ async function run(){
               const services = await cursor.toArray();
               res.send(services);
 
-              
+
          });
          
 
@@ -58,6 +58,7 @@ async function run(){
             console.log(review); 
             const result = await reviewCollection.insertOne(review);
             res.send(result);
+            
         });
 
 
